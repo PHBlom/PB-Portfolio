@@ -1,8 +1,12 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+from date_selector import show_date_selector
 
-st.set_page_config(layout="wide")
+show_date_selector()
+selected_year = st.session_state.selected_year
+selected_month = st.session_state.selected_month
+
 
 # -----------------------
 # LOAD DATA
@@ -23,32 +27,9 @@ df["Asset"] = df["Asset"].astype(str).str.strip()
 
 available_dates = sorted(df["Date"].unique())
 
-years = sorted(pd.Series(available_dates).dt.year.unique())
-months = [
-    "January", "February", "March", "April",
-    "May", "June", "July", "August",
-    "September", "October", "November", "December"
-]
-
-selected_year = st.segmented_control(
-    "Years",
-    years,
-    default=max(years),
-    label_visibility="collapsed"
-)
-
-selected_month = st.segmented_control(
-    "Months",
-    months,
-    default=months[pd.Timestamp.now().month - 2],
-    label_visibility="collapsed"
-)
-
-month_number = months.index(selected_month) + 1
-
 filtered = df[
     (df["Date"].dt.year == selected_year)
-    & (df["Date"].dt.month == month_number)
+    & (df["Date"].dt.month == selected_month)
 ]
 
 # -----------------------
@@ -70,13 +51,18 @@ total_liabilities = abs(liabilities["Value"].sum())
 equity = total_assets - total_liabilities
 
 # -----------------------
-# EQUITY CARD
+# CARDs
 # -----------------------
 
-st.metric(
-    label="Equity",
-    value=f"€ {equity:,.0f}"
-)
+with st.container(border=True, width='stretch', horizontal_alignment='center'):
+    with st.container(border=True, width='content'):
+        st.metric("Equity", f"€ {equity:,.0f}")
+
+    with st.container(width='content', horizontal=True):
+        with st.container(border=True, width='content'):
+            st.metric("Assets", f"€ {total_assets:,.0f}")
+        with st.container(border=True, width='content'):
+            st.metric("Liabilities", f"€ {total_liabilities:,.0f}")
 
 # -----------------------
 # PIE CHARTS

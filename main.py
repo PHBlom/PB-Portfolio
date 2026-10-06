@@ -14,6 +14,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
+
 pg = st.navigation(
     [
         st.Page("pages/dashboard/dashboard.py", title="Dashboard"),
