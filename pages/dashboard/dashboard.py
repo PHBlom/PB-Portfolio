@@ -38,7 +38,7 @@ selected_year = st.segmented_control(
 )
 
 selected_month = st.segmented_control(
-    "",
+    "Months",
     months,
     default=months[pd.Timestamp.now().month - 2],
     label_visibility="collapsed"
