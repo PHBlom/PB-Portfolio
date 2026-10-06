@@ -15,5 +15,4 @@ with tab3:
     
 st.title("ABN AMRO")
 
-st.write("Portfolio overview goes here")
 

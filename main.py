@@ -18,6 +18,7 @@ pg = st.navigation(
     [
         st.Page("pages/dashboard/dashboard.py", title="Dashboard"),
         st.Page("pages/abn-amro/abn-amro.py", title="ABN AMRO"),
+        st.Page("pages/degiro/degiro.py", title="DEGIRO"),
     ],
     position="top",
 )
