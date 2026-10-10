@@ -4,7 +4,7 @@ import pandas as pd
 years = [2021, 2022, 2023, 2024, 2025, 2026]
 months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
-def show_date_selector():
+def dashboard_overview_date():
 
     st.session_state.selected_year = st.segmented_control(
         "Years",
@@ -20,3 +20,13 @@ def show_date_selector():
         label_visibility="collapsed"
     )
     st.session_state.selected_month = months.index(select_month) + 1
+
+def dashboard_timeline_date():
+
+    st.session_state.selected_year = st.pills(
+        "Years",
+        years,
+        selection_mode="multi",
+        default=max(years),
+        label_visibility="collapsed"
+    )
