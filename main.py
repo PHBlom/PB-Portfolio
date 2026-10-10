@@ -2,18 +2,9 @@ import streamlit as st
 
 st.set_page_config(layout="wide")
 
-st.markdown("""
-<style>
-.block-container {
-    padding-top: 3rem;
-    padding-bottom: 1rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-}
-</style>
-""", unsafe_allow_html=True)
-
-
+with open("style.css") as f:
+    css = f.read()
+st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
 
 pg = st.navigation(
     [

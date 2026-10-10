@@ -3,6 +3,10 @@ import pandas as pd
 import plotly.express as px
 from date_selector import show_date_selector
 
+with open("pages/dashboard/dashboard.css") as f:
+    dashboard_css = f.read()
+st.markdown(f'<style>{dashboard_css}</style>', unsafe_allow_html=True)
+
 show_date_selector()
 selected_year = st.session_state.selected_year
 selected_month = st.session_state.selected_month
