@@ -265,6 +265,11 @@ with tab2:
                 for v in pivot["FilteredTotal"]
             ],
             textposition="top center",
+            textfont=dict(
+                size=12,
+                color="#444444",
+                family="Arial Black"
+            ),
             line=dict(
                 color="black",
                 width=4
@@ -279,7 +284,7 @@ with tab2:
 
     fig_bar.update_layout(
         title="Asset Allocation",
-        barmode="stack",
+        barmode="relative",
         height=500,
         hovermode="x unified"
     )
@@ -298,12 +303,7 @@ with tab2:
                 x=pivot.index,
                 y=pivot[asset],
                 name=asset,
-                mode="lines+markers+text",
-                text=[
-                    f"€ {v/1000:.0f}K"
-                    for v in pivot[asset]
-                ],
-                textposition="top center",
+                mode="lines+markers",
                 line=dict(
                     color=ASSET_COLORS.get(asset),
                     width=3
