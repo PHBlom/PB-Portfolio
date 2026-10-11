@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-from date_selector import dashboard_overview_date, dashboard_timeline_date
+from date_selector import dashboard_overview_date
 
 ASSET_COLORS = {
     "ABN-AMRO": "#4E79A7",
